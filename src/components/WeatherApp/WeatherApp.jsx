@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import "./WeatherApp.css";
 
 import cloud_icon from "../assets/cloud.png";
-import drizzle_icon from "../assets/drizzle.png";
+// import drizzle_icon from "../assets/drizzle.png";
 import humidity_icon from "../assets/humidity.png";
-import rain_icon from "../assets/rain.png";
-import snow_icon from "../assets/snow.png";
+// import rain_icon from "../assets/rain.png";
+// import snow_icon from "../assets/snow.png";
 import wind_icon from "../assets/wind.png";
-import clear_icon from "../assets/clear.png";
+// import clear_icon from "../assets/clear.png";
 import search_icon from "../assets/search.png";
 
 let api_key = "cdc3ec354af4d9e6bf51504498fdc151";
