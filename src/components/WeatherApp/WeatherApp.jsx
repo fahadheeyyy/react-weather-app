@@ -2,17 +2,18 @@ import React, { useEffect, useState } from "react";
 import "./WeatherApp.css";
 
 import cloud_icon from "../assets/cloud.png";
-// import drizzle_icon from "../assets/drizzle.png";
+import drizzle_icon from "../assets/drizzle.png";
 import humidity_icon from "../assets/humidity.png";
-// import rain_icon from "../assets/rain.png";
-// import snow_icon from "../assets/snow.png";
+import rain_icon from "../assets/rain.png";
+import snow_icon from "../assets/snow.png";
 import wind_icon from "../assets/wind.png";
-// import clear_icon from "../assets/clear.png";
+import clear_icon from "../assets/clear.png";
 import search_icon from "../assets/search.png";
 
 let api_key = "cdc3ec354af4d9e6bf51504498fdc151";
 
 const WeatherApp = () => {
+  const [wicon, setWicon] = useState(cloud_icon);
   const [weatherData, setWeatherData] = useState({});
   const [searchTerm, setSearchTerm] = useState(null);
 
@@ -40,6 +41,42 @@ const WeatherApp = () => {
         setWeatherData({});
         // alert("City not found");
       }
+
+      if (data.weather[0].icon === "01d" || data.weather[0].icon === "01n") {
+        setWicon(clear_icon);
+      } else if (
+        data.weather[0].icon === "02d" ||
+        data.weather[0].icon === "02n"
+      ) {
+        setWicon(cloud_icon);
+      } else if (
+        data.weather[0].icon === "03d" ||
+        data.weather[0].icon === "03n"
+      ) {
+        setWicon(drizzle_icon);
+      } else if (
+        data.weather[0].icon === "04d" ||
+        data.weather[0].icon === "04n"
+      ) {
+        setWicon(drizzle_icon);
+      } else if (
+        data.weather[0].icon === "09d" ||
+        data.weather[0].icon === "09n"
+      ) {
+        setWicon(rain_icon);
+      } else if (
+        data.weather[0].icon === "10d" ||
+        data.weather[0].icon === "10n"
+      ) {
+        setWicon(rain_icon);
+      } else if (
+        data.weather[0].icon === "13d" ||
+        data.weather[0].icon === "13n"
+      ) {
+        setWicon(snow_icon);
+      } else {
+        setWicon(clear_icon);
+      }
     };
 
     if (searchTerm === null) return null;
@@ -55,6 +92,7 @@ const WeatherApp = () => {
   };
 
   console.log("weatherData", weatherData);
+
   return (
     <div className="container">
       <div className="top-bar">
@@ -74,7 +112,7 @@ const WeatherApp = () => {
         </div>
       </div>
       <div className="weather-image">
-        <img src={cloud_icon} alt="" height="180px" width="180px" />
+        <img src={wicon} alt="" height="180px" width="180px" />
       </div>
       <div className="weather-temp">
         {" "}
@@ -109,7 +147,7 @@ const WeatherApp = () => {
           <img
             src={wind_icon}
             alt=""
-            height="60px"
+            height="80px"
             width="100px"
             className="icon"
           />
